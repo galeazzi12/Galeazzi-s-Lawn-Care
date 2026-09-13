@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeazzi's Lawn Care | Professional Lawn Services</title>
+<style>
+:root{--green:#123d20;--green2:#1d5a2d;--lime:#73d51b;--cream:#f7faf6;--text:#17251a;--muted:#5c695f;--border:#dfe8df}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:white}
+header{background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+.nav{max-width:1120px;margin:auto;padding:17px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:20px;font-weight:800;letter-spacing:.3px;color:var(--green)}
+.nav a{color:var(--text);text-decoration:none;margin-left:28px;font-size:15px;font-weight:700}.nav a:hover{color:var(--green2)}
+.hero{background:var(--cream);border-bottom:1px solid var(--border)}
+.hero-inner{max-width:1120px;margin:auto;padding:72px 24px;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:13px;font-weight:800;color:var(--green2);margin-bottom:14px}
+h1{font-size:clamp(42px,6vw,72px);line-height:.98;letter-spacing:-2px;margin:0 0 22px;color:var(--green)}
+h1 span{color:#59b91b}.hero p{font-size:19px;line-height:1.65;color:var(--muted);max-width:600px;margin-bottom:28px}
+.button{display:inline-block;background:var(--green);color:white;text-decoration:none;font-weight:800;padding:14px 23px;border-radius:7px;border:0;cursor:pointer}.button:hover{background:var(--green2)}
+.hero img{width:100%;max-width:440px;display:block;margin:auto}
+section{padding:70px 24px}.wrap{max-width:1120px;margin:auto}
+.section-head{text-align:center;max-width:650px;margin:0 auto 38px}.section-head h2{font-size:38px;color:var(--green);margin:0 0 12px}.section-head p{color:var(--muted);line-height:1.6;margin:0}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;border:1px solid var(--border);border-radius:10px;padding:28px;box-shadow:0 7px 24px rgba(18,61,32,.06);display:flex;flex-direction:column}
+.card h3{font-size:21px;color:var(--green);margin:0 0 10px}.card p{color:var(--muted);line-height:1.55;margin:0 0 18px}.price{font-size:24px;font-weight:900;color:#4ba915;margin-bottom:20px}
+.card .book{margin-top:auto;text-align:center;width:100%}
+.prices{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;background:white;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+th,td{padding:17px 18px;text-align:left;border-bottom:1px solid var(--border)}th{background:var(--green);color:white;font-size:14px;text-transform:uppercase;letter-spacing:.6px}td{font-size:16px}td:not(:first-child){font-weight:800}tr:last-child td{border-bottom:0}
+.contact{background:var(--green);color:white;text-align:center}.contact h2{font-size:42px;margin:0 0 12px}.contact p{font-size:18px;line-height:1.6;color:#dce9df}.contact .button{background:var(--lime);color:#102c18;margin-top:8px}
+footer{background:#0b2915;color:#cbd8cd;text-align:center;padding:22px;font-size:13px}
+
+/* Booking modal */
+.modal{display:none;position:fixed;inset:0;background:rgba(8,27,14,.68);z-index:50;padding:25px;overflow:auto}
+.modal.show{display:flex;align-items:center;justify-content:center}
+.form-box{background:white;width:min(620px,100%);border-radius:14px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative}
+.close{position:absolute;right:18px;top:13px;background:none;border:0;font-size:28px;color:#526057;cursor:pointer}
+.form-box h2{margin:0 35px 7px 0;color:var(--green);font-size:30px}.form-box .subtitle{margin:0 0 24px;color:var(--muted)}
+label{display:block;font-weight:700;color:var(--green);font-size:14px;margin:15px 0 7px}
+input,select,textarea{width:100%;padding:12px 13px;border:1px solid #cbd8cc;border-radius:7px;font:inherit;background:#fff}
+textarea{min-height:90px;resize:vertical}.submit{width:100%;margin-top:22px;font-size:16px}
+.notice{font-size:12px;color:var(--muted);line-height:1.5;margin-top:12px}
+.success{display:none;background:#eef8e9;border:1px solid #cfe8c5;border-radius:8px;padding:14px;color:#285a2e;margin-top:15px}
+@media(max-width:780px){.nav{padding:15px 18px}.brand{font-size:17px}.nav a{margin-left:12px;font-size:13px}.hero-inner{grid-template-columns:1fr;text-align:center;padding:55px 20px}.hero p{margin-left:auto;margin-right:auto}.services{grid-template-columns:1fr}section{padding:55px 20px}.section-head h2{font-size:32px}th,td{padding:13px 10px;font-size:14px}.form-box{padding:24px 20px}}
+</style>
+</head>
+<body>
+
+<header><div class="nav"><div class="brand">GALEAZZI'S LAWN CARE</div><nav><a href="#services">Services</a><a href="#prices">Pricing</a><a href="#contact">Contact</a></nav></div></header>
+
+<main>
+<section class="hero"><div class="hero-inner">
+<div><div class="eyebrow">Reliable neighborhood lawn care</div><h1>Professional care for a <span>better-looking yard.</span></h1>
+<p>Affordable lawn-care services focused on keeping your yard clean, neat, and well maintained.</p>
+<a class="button" href="#services">View Services</a></div>
+<img src="logo.png" alt="Galeazzi's Lawn Care"></div></section>
+
+<section id="services"><div class="wrap"><div class="section-head"><h2>Our Services</h2><p>Choose a service below to start a booking request.</p></div>
+<div class="services">
+<div class="card"><h3>Lawn Mowing</h3><p>Keep your grass neat and maintained with regular mowing.</p><div class="price">From $10</div><button class="button book" onclick="openForm('Lawn Mowing')">Book</button></div>
+<div class="card"><h3>Trimming</h3><p>Clean up lawn edges and areas that need extra attention.</p><div class="price">From $10</div><button class="button book" onclick="openForm('Trimming')">Book</button></div>
+<div class="card"><h3>Pulling Weeds</h3><p>Remove unwanted weeds and help keep garden areas tidy.</p><div class="price">$5</div><button class="button book" onclick="openForm('Pulling Weeds')">Book</button></div>
+<div class="card"><h3>Leaf Cleanup</h3><p>Clear leaves from your yard and leave the area looking neat.</p><div class="price">$5</div><button class="button book" onclick="openForm('Leaf Cleanup')">Book</button></div>
+<div class="card"><h3>Yard Cleanup</h3><p>A basic cleanup service to refresh and tidy your outdoor space.</p><div class="price">$10</div><button class="button book" onclick="openForm('Yard Cleanup')">Book</button></div>
+</div></div></section>
+
+<section id="prices" class="prices"><div class="wrap"><div class="section-head"><h2>Pricing</h2><p>Our current starting prices are listed below.</p></div>
+<table><tr><th>Service</th><th>Small</th><th>Medium</th><th>Large</th></tr>
+<tr><td>Lawn Mowing</td><td>$10</td><td>$15</td><td>$20</td></tr><tr><td>Trimming</td><td>$10</td><td>$15</td><td>$20</td></tr>
+<tr><td>Pulling Weeds</td><td>$5</td><td>—</td><td>—</td></tr><tr><td>Leaf Cleanup</td><td>$5</td><td>—</td><td>—</td></tr><tr><td>Yard Cleanup</td><td>$10</td><td>—</td><td>—</td></tr></table></div></section>
+
+<section id="contact" class="contact"><div class="wrap"><h2>Let's take care of your lawn.</h2><p>Choose a service above to submit a booking request.</p><a class="button" href="#services">Book a Service</a></div></section>
+</main>
+
+<footer>© 2026 Galeazzi's Lawn Care. All rights reserved.</footer>
+
+<div id="bookingModal" class="modal" onclick="if(event.target===this) closeForm()">
+<div class="form-box">
+<button class="close" onclick="closeForm()" aria-label="Close">&times;</button>
+<h2 id="formTitle">Book a Service</h2><p class="subtitle">Tell us a few details and we'll review your request.</p>
+<form id="bookingForm" onsubmit="submitBooking(event)">
+<input type="hidden" id="service" name="service">
+<label for="name">Your name</label><input id="name" name="name" required placeholder="Full name">
+<label for="phone">Phone number</label><input id="phone" name="phone" type="tel" required placeholder="Phone number">
+<label for="address">Service address</label><input id="address" name="address" required placeholder="Street address">
+<div id="dynamicQuestions"></div>
+<label for="day">Preferred day</label><input id="day" name="preferred_day" type="date" required>
+<label for="notes">Additional details</label><textarea id="notes" name="notes" placeholder="Anything else we should know?"></textarea>
+<button class="button submit" type="submit">Submit Booking Request</button>
+<div class="notice">This creates a booking request. Availability and final pricing can be confirmed after review.</div>
+<div id="success" class="success">Your booking request has been prepared. To receive automatic text notifications, connect this form to an SMS service or Google Form automation.</div>
+</form></div></div>
+
+<script>
+const questions={
+"Lawn Mowing":[["yardSize","Yard size","select",["Small","Medium","Large"]],["frequency","How often would you like mowing?","select",["One-time","Weekly","Every 2 weeks"]]],
+"Trimming":[["yardSize","Yard size","select",["Small","Medium","Large"]],["areas","What areas need trimming?","textarea",[]]],
+"Pulling Weeds":[["weedArea","Where are the weeds?","textarea",[]],["amount","Approximate amount","select",["Small amount","Medium amount","Large amount"]]],
+"Leaf Cleanup":[["leafAmount","How much leaf cleanup is needed?","select",["Small amount","Medium amount","Large amount"]],["yardSize","Yard size","select",["Small","Medium","Large"]]],
+"Yard Cleanup":[["yardSize","Yard size","select",["Small","Medium","Large"]],["cleanupDetails","What needs to be cleaned up?","textarea",[]]]
+};
+function openForm(service){
+ document.getElementById('bookingModal').classList.add('show');
+ document.getElementById('formTitle').textContent='Book '+service;
+ document.getElementById('service').value=service;
+ const box=document.getElementById('dynamicQuestions'); box.innerHTML='';
+ questions[service].forEach(q=>{
+   const label=document.createElement('label');label.textContent=q[1];label.htmlFor=q[0];box.appendChild(label);
+   let el;
+   if(q[2]==='select'){el=document.createElement('select');el.innerHTML='<option value="">Select one</option>'+q[3].map(x=>`<option>${x}</option>`).join('');}
+   else{el=document.createElement('textarea');el.placeholder='Please provide details';}
+   el.id=q[0];el.name=q[0];el.required=true;box.appendChild(el);
+ });
+ document.getElementById('success').style.display='none';
+}
+function closeForm(){document.getElementById('bookingModal').classList.remove('show')}
+function submitBooking(e){
+ e.preventDefault();
+ // A Google Form destination can be connected here once its form URL/field IDs are available.
+ document.getElementById('success').style.display='block';
+ e.target.querySelector('.submit').textContent='Request Ready';
+}
+</script>
+</body>
+</html>
