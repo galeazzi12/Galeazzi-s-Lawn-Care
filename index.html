@@ -27,8 +27,8 @@ section{padding:70px 24px}.wrap{max-width:1120px;margin:auto}
 .card .book{margin-top:auto;text-align:center;width:100%}
 .prices{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 table{width:100%;border-collapse:collapse;background:white;border:1px solid var(--border);border-radius:10px;overflow:hidden}
-th,td{padding:17px 18px;text-align:left;border-bottom:1px solid var(--border)}th{background:var(--green);color:white;font-size:14px;text-transform:uppercase;letter-spacing:.6px}td{font-size:16px}td:not(:first-child){font-weight:800}tr:last-child td{border-bottom:0}
-.contact{background:var(--green);color:white;text-align:center}.contact h2{font-size:42px;margin:0 0 12px}.contact p{font-size:18px;line-height:1.6;color:#dce9df}.contact .button{background:var(--lime);color:#102c18;margin-top:8px}
+th,td{padding:17px 18px;text-align:left;border-bottom:1px solid var(--border)}th{background:var(--green);color:white;font-size:14px;text-transform:uppercase;letter-spacing:.6px}td{font-size:16px}tr:last-child td{border-bottom:0}
+.contact{background:var(--green);color:white;text-align:center}.contact h2{font-size:42px;margin:0 0 12px}.contact p{font-size:18px;line-height:1.6;color:#dce9df}.contact .button{background:var(--lime);color:var(--green)}
 footer{background:#0b2915;color:#cbd8cd;text-align:center;padding:22px;font-size:13px}
 
 /* Booking modal */
@@ -42,7 +42,8 @@ input,select,textarea{width:100%;padding:12px 13px;border:1px solid #cbd8cc;bord
 textarea{min-height:90px;resize:vertical}.submit{width:100%;margin-top:22px;font-size:16px}
 .notice{font-size:12px;color:var(--muted);line-height:1.5;margin-top:12px}
 .success{display:none;background:#eef8e9;border:1px solid #cfe8c5;border-radius:8px;padding:14px;color:#285a2e;margin-top:15px}
-@media(max-width:780px){.nav{padding:15px 18px}.brand{font-size:17px}.nav a{margin-left:12px;font-size:13px}.hero-inner{grid-template-columns:1fr;text-align:center;padding:55px 20px}.hero p{margin-left:auto;margin-right:auto}.services{grid-template-columns:1fr}section{padding:55px 20px}.section-head h2{font-size:32px}th,td{padding:13px 10px;font-size:14px}.form-box{padding:24px 20px}}
+.error{display:none;background:#ffe8e8;border:1px solid #ff8b8b;border-radius:8px;padding:14px;color:#8b0000;margin-top:15px}
+@media(max-width:780px){.nav{padding:15px 18px}.brand{font-size:17px}.nav a{margin-left:12px;font-size:13px}.hero-inner{grid-template-columns:1fr;text-align:center;padding:55px 20px}.hero p{margin-bottom:25px}.services{grid-template-columns:1fr}.section-head h2{font-size:28px}table{font-size:14px}th,td{padding:10px}h1{font-size:36px}}
 </style>
 </head>
 <body>
@@ -68,7 +69,8 @@ textarea{min-height:90px;resize:vertical}.submit{width:100%;margin-top:22px;font
 <section id="prices" class="prices"><div class="wrap"><div class="section-head"><h2>Pricing</h2><p>Our current starting prices are listed below.</p></div>
 <table><tr><th>Service</th><th>Small</th><th>Medium</th><th>Large</th></tr>
 <tr><td>Lawn Mowing</td><td>$10</td><td>$15</td><td>$20</td></tr><tr><td>Trimming</td><td>$10</td><td>$15</td><td>$20</td></tr>
-<tr><td>Pulling Weeds</td><td>$5</td><td>—</td><td>—</td></tr><tr><td>Leaf Cleanup</td><td>$5</td><td>—</td><td>—</td></tr><tr><td>Yard Cleanup</td><td>$10</td><td>—</td><td>—</td></tr></table></div></section>
+<tr><td>Pulling Weeds</td><td>$5</td><td>—</td><td>—</td></tr><tr><td>Leaf Cleanup</td><td>$5</td><td>—</td><td>—</td></tr><tr><td>Yard Cleanup</td><td>$10</td><td>—</td><td>—</td></tr></table>
+</div></section>
 
 <section id="contact" class="contact"><div class="wrap"><h2>Let's take care of your lawn.</h2><p>Choose a service above to submit a booking request.</p><a class="button" href="#services">Book a Service</a></div></section>
 </main>
@@ -88,11 +90,16 @@ textarea{min-height:90px;resize:vertical}.submit{width:100%;margin-top:22px;font
 <label for="day">Preferred day</label><input id="day" name="preferred_day" type="date" required>
 <label for="notes">Additional details</label><textarea id="notes" name="notes" placeholder="Anything else we should know?"></textarea>
 <button class="button submit" type="submit">Submit Booking Request</button>
-<div class="notice">This creates a booking request. Availability and final pricing can be confirmed after review.</div>
-<div id="success" class="success">Your booking request has been prepared. To receive automatic text notifications, connect this form to an SMS service or Google Form automation.</div>
+<div class="notice">This creates a booking request that will be emailed to us for review.</div>
+<div id="success" class="success">✓ Your booking request has been sent! We'll review it and follow up soon.</div>
+<div id="error" class="error">✗ There was an issue sending your request. Please try again.</div>
 </form></div></div>
 
 <script>
+// IMPORTANT: Replace 'YOUR_FORM_ID' with your actual Formspree form ID
+// Sign up at formspree.io and create a form to get your ID
+const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID';
+
 const questions={
 "Lawn Mowing":[["yardSize","Yard size","select",["Small","Medium","Large"]],["frequency","How often would you like mowing?","select",["One-time","Weekly","Every 2 weeks"]]],
 "Trimming":[["yardSize","Yard size","select",["Small","Medium","Large"]],["areas","What areas need trimming?","textarea",[]]],
@@ -113,13 +120,46 @@ function openForm(service){
    el.id=q[0];el.name=q[0];el.required=true;box.appendChild(el);
  });
  document.getElementById('success').style.display='none';
+ document.getElementById('error').style.display='none';
 }
 function closeForm(){document.getElementById('bookingModal').classList.remove('show')}
 function submitBooking(e){
  e.preventDefault();
- // A Google Form destination can be connected here once its form URL/field IDs are available.
- document.getElementById('success').style.display='block';
- e.target.querySelector('.submit').textContent='Request Ready';
+ const submitBtn = e.target.querySelector('.submit');
+ const successMsg = document.getElementById('success');
+ const errorMsg = document.getElementById('error');
+ 
+ successMsg.style.display='none';
+ errorMsg.style.display='none';
+ 
+ // Collect form data
+ const formData = new FormData(e.target);
+ 
+ // Send to Formspree
+ fetch(FORMSPREE_URL, {
+   method: 'POST',
+   body: formData,
+   headers: {
+     'Accept': 'application/json'
+   }
+ }).then(response => {
+   if (response.ok) {
+     successMsg.style.display='block';
+     e.target.reset();
+     submitBtn.textContent='✓ Request Sent';
+     submitBtn.disabled = true;
+     setTimeout(() => {
+       closeForm();
+       submitBtn.textContent='Submit Booking Request';
+       submitBtn.disabled = false;
+     }, 2000);
+   } else {
+     errorMsg.style.display='block';
+   }
+ }).catch(error => {
+   errorMsg.style.display='block';
+   console.error('Error:', error);
+ });
 }
 </script>
 </body>
